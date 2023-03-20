@@ -11,7 +11,6 @@ export class GetRepoCommitsUseCase {
 
   async execute(repo: string, owner: string): Promise<IGetCommitResponseDTO[]> {
     const commits = await this.githubProvider.getPaginatedCommits(repo, owner);
-
     return commits;
   }
 }

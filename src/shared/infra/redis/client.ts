@@ -6,6 +6,8 @@ const redisClient = createClient({
 });
 
 redisClient.on("error", (err) => console.log("Redis client error: ", err));
-redisClient.on("ready", () => console.log("Redis client is ready"));
+redisClient.on("ready", async () => {
+  console.log("Redis client is ready");
+});
 
 export { redisClient };

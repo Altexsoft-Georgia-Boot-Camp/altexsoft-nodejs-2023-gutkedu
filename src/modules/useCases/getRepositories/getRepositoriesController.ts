@@ -6,10 +6,10 @@ export class GetRepositoriesController {
   async handle(request: Request, response: Response): Promise<Response> {
     const getRepositoriesUseCase = container.resolve(GetRepositoriesUseCase);
 
-    const repositoryData = await getRepositoriesUseCase.execute(
-      request.query.repo as string,
-      request.query.owner as string
-    );
+    const repositoryData = await getRepositoriesUseCase.execute({
+      owner: request.query.owner as string,
+      repo: request.query.repo as string,
+    });
 
     return response.send(repositoryData).status(200);
   }

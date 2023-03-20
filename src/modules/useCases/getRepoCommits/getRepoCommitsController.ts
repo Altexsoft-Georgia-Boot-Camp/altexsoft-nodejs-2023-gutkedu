@@ -11,8 +11,6 @@ export class GetRepoCommitsController {
 
     const commits = await getRepoCommits.execute(repo, owner);
 
-    console.log(commits.length);
-
     return response.send(commits).status(200);
   }
 }

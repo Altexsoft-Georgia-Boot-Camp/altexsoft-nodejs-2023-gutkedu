@@ -1,7 +1,7 @@
 import { AppError } from "@shared/errors/AppError";
 import { NextFunction, Request, Response } from "express";
 import { redisClient } from "@shared/infra/redis/client";
-import { IGetRepositoryResponseDTO } from "@modules/dtos/IOctokitDTO";
+import { IGetRepositoryResponseDTO } from "@modules/dtos/IGetReposDTO";
 
 interface IResponse {
   RepositoryData: IGetRepositoryResponseDTO;
