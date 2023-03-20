@@ -1,5 +1,5 @@
 import { cacheConfig } from "@config/redis";
-import { IGetRepositoryResponseDTO } from "@modules/dtos/IOctokitDTO";
+import { IGetRepositoryResponseDTO } from "@modules/dtos/IGetReposDTO";
 import { IGithubProvider } from "@shared/container/providers/githubProvider/IGithubProvider";
 import { redisClient } from "@shared/infra/redis/client";
 import { inject, injectable } from "tsyringe";
