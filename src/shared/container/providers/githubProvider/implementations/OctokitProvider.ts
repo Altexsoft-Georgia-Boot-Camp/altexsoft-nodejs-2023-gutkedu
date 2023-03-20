@@ -1,5 +1,5 @@
 import { IGetCommitResponseDTO } from "@modules/dtos/IGetCommitsDTO";
-import { IGetRepositoryResponseDTO } from "@modules/dtos/IGetReposDTO";
+import { IGetRepoResponseDTO } from "@modules/dtos/IGetReposDTO";
 import { IGithubProvider } from "@shared/container/providers/githubProvider/IGithubProvider";
 import { AppError } from "@shared/errors/AppError";
 import { Octokit } from "octokit";
@@ -27,13 +27,26 @@ export class OctokitProvider implements IGithubProvider {
   async getRepository(
     repo: string,
     owner: string
-  ): Promise<IGetRepositoryResponseDTO> {
+  ): Promise<IGetRepoResponseDTO> {
     try {
       const { data } = await this.octokit.rest.repos.get({
         owner,
         repo,
       });
-      return data;
+      return {
+        id: data.id,
+        name: data.name,
+        full_name: data.full_name,
+        private: data.private,
+        owner: {
+          id: data.owner.id,
+          login: data.owner.login,
+          avatar_url: data.owner.avatar_url,
+          url: data.owner.url,
+        },
+        html_url: data.html_url,
+        description: data.description,
+      };
     } catch (error) {
       throw new AppError("Repository not found", 404);
     }

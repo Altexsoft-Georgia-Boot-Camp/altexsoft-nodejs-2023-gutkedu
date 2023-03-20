@@ -1,5 +1,5 @@
 import { ICreateRepoDTO } from "@modules/dtos/ICreateRepoDTO";
-import { IGetRepositoryResponseDTO } from "@modules/dtos/IGetReposDTO";
+import { IGetRepoResponseDTO } from "@modules/dtos/IGetReposDTO";
 import { IRepoRepository } from "@modules/repositories/interface/IRepoRepository";
 import { IGithubProvider } from "@shared/container/providers/githubProvider/IGithubProvider";
 import { inject, injectable } from "tsyringe";
@@ -13,7 +13,7 @@ export class GetRepositoriesUseCase {
     private repoRepository: IRepoRepository
   ) {}
 
-  async execute(payload: ICreateRepoDTO): Promise<IGetRepositoryResponseDTO> {
+  async execute(payload: ICreateRepoDTO): Promise<IGetRepoResponseDTO> {
     const repositoryData = await this.githubProvider.getRepository(
       payload.repo,
       payload.owner
@@ -30,6 +30,6 @@ export class GetRepositoriesUseCase {
       });
     }
 
-    return repositoryData;
+    return { ...repositoryData, counter: repoExist?.counter || 1 };
   }
 }

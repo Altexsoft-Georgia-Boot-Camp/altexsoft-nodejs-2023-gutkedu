@@ -111,3 +111,19 @@ export interface License {
   url: string;
   node_id: string;
 }
+
+export interface IGetRepoResponseDTO {
+  id: number;
+  name: string;
+  full_name: string;
+  private: boolean;
+  owner: {
+    id: number;
+    login: string;
+    avatar_url: string;
+    url: string;
+  };
+  html_url: string;
+  description: string;
+  counter?: number;
+}

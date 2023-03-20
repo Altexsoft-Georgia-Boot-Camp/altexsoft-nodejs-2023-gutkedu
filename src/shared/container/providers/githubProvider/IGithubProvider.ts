@@ -1,11 +1,8 @@
 import { IGetCommitResponseDTO } from "@modules/dtos/IGetCommitsDTO";
-import { IGetRepositoryResponseDTO } from "@modules/dtos/IGetReposDTO";
+import { IGetRepoResponseDTO } from "@modules/dtos/IGetReposDTO";
 
 export interface IGithubProvider {
-  getRepository(
-    repo: string,
-    owner: string
-  ): Promise<IGetRepositoryResponseDTO>;
+  getRepository(repo: string, owner: string): Promise<IGetRepoResponseDTO>;
   getPaginatedCommits(
     repo: string,
     owner: string
