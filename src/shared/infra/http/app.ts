@@ -1,14 +1,16 @@
 import "reflect-metadata";
-import express, { Response, Request, NextFunction } from "express";
 import "express-async-errors";
+import express, { Response, Request, NextFunction } from "express";
 import helmet from "helmet";
+
+import { Octokit } from "octokit";
 
 import "@shared/container";
 import { router } from "@shared/infra/http/routes/index";
 import { AppError } from "@shared/errors/AppError";
-import { client } from "@shared/infra/redis/client";
+import { redisClient } from "@shared/infra/redis/client";
 
-client.connect();
+redisClient.connect();
 
 const app = express();
 
@@ -17,6 +19,8 @@ app.use(express.json());
 app.use(helmet());
 
 app.use(router);
+
+const octokit = new Octokit({});
 
 app.use(
   (err: Error, request: Request, response: Response, next: NextFunction) => {
