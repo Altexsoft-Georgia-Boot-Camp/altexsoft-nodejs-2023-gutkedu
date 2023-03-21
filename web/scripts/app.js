@@ -130,6 +130,12 @@
           </tbody>
           `;
           $('[data-js="commitButton"]').on("click", app.handleCommitButton);
+
+          let $commitsTable = $('[data-js="commitsTable"]').get();
+
+          if ($commitsTable) {
+            $commitsTable.innerHTML = ``;
+          }
         } catch (error) {
           alert("Repository not found");
         }
