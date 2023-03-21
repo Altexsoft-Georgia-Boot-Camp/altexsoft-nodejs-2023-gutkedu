@@ -29,6 +29,9 @@ $ git clone https://github.com/Altexsoft-Georgia-Boot-Camp/altexsoft-nodejs-2023
 # access the project folder
 $ cd altexsoft-nodejs-2023-gutkedu
 
+# install the dependencies
+$ npm i
+
 # build the docker image
 $ docker compose build
 
