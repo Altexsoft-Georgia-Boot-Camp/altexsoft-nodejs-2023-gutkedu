@@ -7,10 +7,7 @@ import cors from "cors";
 import "@shared/container";
 import { router } from "@shared/infra/http/routes/index";
 import { AppError } from "@shared/errors/AppError";
-import { redisClient } from "@shared/infra/redis/client";
 import { createRedisOmClient } from "../redis/redis-om";
-
-redisClient.connect();
 
 createRedisOmClient();
 
