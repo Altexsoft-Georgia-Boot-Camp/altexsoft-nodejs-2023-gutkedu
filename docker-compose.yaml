@@ -23,5 +23,11 @@ services:
     depends_on:
       - cache
 
+  web:
+    build: 
+      dockerfile: ./web/Dockerfile
+    image: static_app
+    ports:
+      - "80:80" 
 
 
