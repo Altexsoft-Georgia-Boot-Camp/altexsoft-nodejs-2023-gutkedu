@@ -35,11 +35,11 @@
       <div class="flex space-x-4">
         <div class="mb-6">
           <label for="base-input" class="block mb-2 text-sm font-medium text-gray-500 dark:text-black">Author</label>
-          <input type="text" data-js="authorInput" id="base-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <input type="text" data-js="authorInput" id="base-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" aria-required="true" >
       </div>
       <div class="mb-6">
           <label for="base-input" class="block mb-2 text-sm font-medium text-gray-500 dark:text-black">Repository</label>
-          <input type="text" data-js="repoInput" id="base-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <input type="text" required data-js="repoInput" id="base-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" aria-required="true">
       </div>
       </div>
     </div>
@@ -54,18 +54,22 @@
       </div>
     </div> 
 
+    <div class = "flex justify-center" data-js="tableInput"></div> 
+
+    <br>
+
+    <div class = "flex justify-center" data-js="commitsTable"></div> 
+
+    <br>
+
     <div class = "flex justify-center">
-      <table class="table-auto ">
-        <thead>
-          <tr>
-            <th class="px-4 py-2">Owner</th>
-            <th class="px-4 py-2" >Repository</th>
-            <th class="px-4 py-2">Description</th>
-          </tr>
-        </thead>
-        <tbody data-js="tableBody">
-        </tbody>
+      <div class="grid grid-cols-1 gap-4 border-2 border-sky-500 px-4 py-5"">
+        <span class="px-4 py-2">Already searched repositories:</span>
+        <div data-js="alreadySearchedTable"></div>
       </div>
+    </div>
+
+
 </main>
 
 <script src="./scripts/DOM.js"></script>
