@@ -11,13 +11,13 @@ export class RepoRepository implements IRepoRepository {
 
   constructor() {
     this.repository = redisOmClient.fetchRepository(RepoSchema);
-    this.repository.createIndex();
   }
 
   async create(data: ICreateRepoDTO): Promise<RepoEntity> {
     const newRepo = await this.repository.createAndSave({
       repo: data.repo,
       owner: data.owner,
+      counter: data.counter,
     });
     return newRepo;
   }

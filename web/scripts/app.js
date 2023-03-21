@@ -6,9 +6,9 @@
 
     return {
       init: function () {
+        app.handleAlreadySearched();
         setTimeout(() => {
           app.initButtonsForIndex();
-          app.handleAlreadySearched();
         }, 300);
       },
 
@@ -51,7 +51,10 @@
 
           app.handleAlreadySearched();
         } catch (error) {
-          console.log(error);
+          let $alreadySearched = $('[data-js="alreadySearchedTable"]').get();
+          $alreadySearched.innerHTML = `
+          <span class="text-red-500 px-4 py-2" align="center">No repositories searched yet</span>
+          `;
         }
       },
 
@@ -136,6 +139,8 @@
           if ($commitsTable) {
             $commitsTable.innerHTML = ``;
           }
+
+          app.handleAlreadySearched();
         } catch (error) {
           alert("Repository not found");
         }
