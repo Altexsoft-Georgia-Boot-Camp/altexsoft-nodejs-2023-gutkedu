@@ -1,4 +1,4 @@
-import { IGetCommitResponseDTO } from "@modules/dtos/IGetCommitsDTO";
+import { IGetCommitsDTO } from "@modules/dtos/IGetCommitsDTO";
 import { IGithubProvider } from "@shared/container/providers/githubProvider/IGithubProvider";
 import { inject, injectable } from "tsyringe";
 
@@ -9,7 +9,7 @@ export class GetRepoCommitsUseCase {
     private githubProvider: IGithubProvider
   ) {}
 
-  async execute(repo: string, owner: string): Promise<IGetCommitResponseDTO[]> {
+  async execute(repo: string, owner: string): Promise<IGetCommitsDTO[]> {
     const commits = await this.githubProvider.getPaginatedCommits(repo, owner);
     return commits;
   }

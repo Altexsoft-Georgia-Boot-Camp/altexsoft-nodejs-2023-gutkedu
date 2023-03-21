@@ -1,4 +1,4 @@
-import { IGetCommitResponseDTO } from "@modules/dtos/IGetCommitsDTO";
+import { IGetCommitsDTO } from "@modules/dtos/IGetCommitsDTO";
 import { IGetRepoResponseDTO } from "@modules/dtos/IGetReposDTO";
 import { IGithubProvider } from "@shared/container/providers/githubProvider/IGithubProvider";
 import { AppError } from "@shared/errors/AppError";
@@ -13,12 +13,30 @@ export class OctokitProvider implements IGithubProvider {
   async getPaginatedCommits(
     repo: string,
     owner: string
-  ): Promise<IGetCommitResponseDTO[]> {
+  ): Promise<IGetCommitsDTO[]> {
     try {
       const { data } = await this.octokit.request(
         `GET /repos/${owner}/${repo}/commits?page=1&per_page=10`
       );
-      return data;
+
+      const commits: IGetCommitsDTO[] = data.map((c) => {
+        return {
+          sha: c.sha,
+          commit: {
+            author: c.commit.author.name,
+            email: c.commit.author.email,
+            date: c.commit.author.date,
+          },
+          committer: {
+            name: c.commit.committer.name,
+            email: c.commit.committer.email,
+            date: c.commit.committer.date,
+          },
+          message: c.commit.message,
+        };
+      });
+
+      return commits;
     } catch (error) {
       throw new AppError("Repository not found", 404);
     }

@@ -91,3 +91,18 @@ export interface Parent {
   url: string;
   html_url: string;
 }
+
+export interface IGetCommitsDTO {
+  sha: string;
+  commit: {
+    author: string;
+    email: string;
+    date: string;
+  };
+  committer: {
+    name: string;
+    email: string;
+    date: string;
+  };
+  message: string;
+}
