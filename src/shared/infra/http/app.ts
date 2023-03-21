@@ -2,6 +2,7 @@ import "reflect-metadata";
 import "express-async-errors";
 import express, { Response, Request, NextFunction } from "express";
 import helmet from "helmet";
+import cors from "cors";
 
 import "@shared/container";
 import { router } from "@shared/infra/http/routes/index";
@@ -14,6 +15,8 @@ redisClient.connect();
 createRedisOmClient();
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 
